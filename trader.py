@@ -2,7 +2,6 @@ import json
 import logging
 import os
 import signal
-from pprint import pprint
 
 from web3 import HTTPProvider, Web3
 
@@ -46,6 +45,10 @@ def on_eth_received(event):
     logging.info("Would sell {} ETH for {} EUR. Price: {}".format(eth_amount, eur_amount,
                                                                   eur_amount / eth_amount))
     # TODO Do actual trading
+    send_eur_tokens(client_address, eur_amount)
+
+
+def send_eur_tokens(client_address, eur_amount):
     eur_tokens = int(eur_amount * EURO_TOKENS_FOR_EURO)
     logging.info("Transfer {} EUR Tokens...".format(eur_tokens))
     tx = traderContract.transact().traded(client_address, eur_tokens)
