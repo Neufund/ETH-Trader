@@ -1,0 +1,8 @@
+version: '2'
+services:
+  eth-trader:
+    build: .
+    ports:
+      - "5000:5000"
+    env_file:
+      - config.env
